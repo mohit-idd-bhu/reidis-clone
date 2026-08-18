@@ -8,7 +8,7 @@ class DatabaseEngine{
 private:
   Redis redis;
 public:
-  DatabaseEngine(): redis(){
+  DatabaseEngine(size_t ttl=20): redis(ttl){
     std::cout<<"Initializing database with pid "<<getpid()<<'\n';
   }
   CommandResult execute_command(std::string& cmd_str);
