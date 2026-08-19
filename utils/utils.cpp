@@ -1,7 +1,8 @@
+#include "utils.hpp"
 #include<iostream>
 #include<vector>
-#include "utils.hpp"
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
