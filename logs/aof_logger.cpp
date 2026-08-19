@@ -2,10 +2,13 @@
 #include "../enums/log_event.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <thread>
+#include <chrono>
+#include <iomanip>
+#include <ctime>
 
-class AOFLogger
-{
+class AOFLogger{
 public:
   static AOFLogger &instance(){
     static AOFLogger logger;
@@ -35,7 +38,14 @@ public:
   }
 
   void write(Event e){
-    log_file_writer << e.payload << '\n';
+    const auto timestamp = std::chrono::system_clock::to_time_t(e.sequence);
+    std::tm local_timestamp{};
+    #ifdef _WIN32
+      localtime_s(&local_timestamp, &timestamp);
+    #else
+      localtime_r(&timestamp, &local_timestamp);
+    #endif
+      log_file_writer << '[' << std::put_time(&local_timestamp, "%Y-%m-%d %H:%M:%S")<< "] " << e.payload << '\n';
   }
 private:
   AOFLogger() : log_file_writer("aof.log", std::ios::app), worker(&AOFLogger::consume,this){}
