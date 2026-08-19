@@ -10,3 +10,17 @@ target_compile_features(aof_logger PUBLIC cxx_std_17)
 
 add_executable(redisdb main.cpp utils/utils.cpp engine/engine.cpp servers/cliserver/cliserver.cpp servers/tcpserver/tcpserver.cpp)
 target_link_libraries(redisdb PRIVATE aof_logger)
+
+target_compile_options(redisdb PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Werror
+)
+
+target_compile_options(aof_logger PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Werror
+)
