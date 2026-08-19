@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <cstddef>
 #include <array>
+#include <atomic>
 
 template<typename T,std::size_t Capacity>
 class LogBuffer{

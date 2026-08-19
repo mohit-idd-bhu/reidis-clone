@@ -7,6 +7,7 @@
 #include <chrono>
 #include <iomanip>
 #include <ctime>
+#include <atomic>
 
 class AOFLogger{
 public:
