@@ -7,5 +7,6 @@ enum class COMMAND{
   SIZE,
   HELP,
   EXIT,
+  PING,
   UNKOWN
 };
