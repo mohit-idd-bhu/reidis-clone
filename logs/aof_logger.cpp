@@ -10,7 +10,7 @@
 
 class AOFLogger{
 public:
-  static AOFLogger &instance(){
+  static AOFLogger& instance(){
     static AOFLogger logger;
     return logger;
   }
